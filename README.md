@@ -32,6 +32,26 @@ API Endpoint in this boilerplate :
         <li>POST: /user (Create user)</li>
       </ul>
     </li>
+    <li>
+      <p>Role</p>
+      <ul>
+        <li>GET: /role (Get all role - paginated) </li>
+        <li>GET: /role/{role} (Get role by ID)</li>
+        <li>PUT: /role/{role} (Update role by ID)</li>
+        <li>POST: /role (Create role)</li>
+        <li>DELETE: /role/{role} (Delete role by ID)</li>
+      </ul>
+    </li>
+    <li>
+      <p>Permission</p>
+      <ul>
+        <li>GET: /permission (Get all permission - paginated) </li>
+        <li>GET: /permission/{permission} (Get permission by ID)</li>
+        <li>PUT: /permission/{permission} (Update permission by ID)</li>
+        <li>POST: /permission (Create permission)</li>
+        <li>DELETE: /permission/{permission} (Delete permission by ID)</li>
+      </ul>
+    </li>
 </ol>
 
 <!-- GETTING STARTED -->
