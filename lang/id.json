@@ -1,0 +1,19 @@
+{
+    "Success" : "Sukses",
+    "Active" : "Aktif",
+    "Inactive" : "Tidak Aktif",
+    "Invalid access token" : "Akses token tidak valid",
+    "Create user failed" : "Create user gagal",
+    "User account is inactive" : "Akun tidak aktif",
+    "User account not found" : "User akun tidak ditemukan",
+    "Wrong credentials" : "Kata sandi salah",
+    "Create role failed" : "Create role gagal",
+    "Role not found" : "Role tidak ditemukan",
+    "Access Token" : "Akses Token",
+    "Email" : "Email",
+    "Password" : "Kata sandi",
+    "Role Name" : "Nama Role",
+    "Role Description" : "Deskripsi Role",
+    "User Name" : "Nama User",
+    "User Email" : "Email User"
+}

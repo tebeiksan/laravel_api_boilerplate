@@ -1,0 +1,19 @@
+{
+    "Success" : "Success",
+    "Active" : "Active",
+    "Inactive" : "Inactive",
+    "Invalid access token" : "Invalid access token",
+    "Create user failed" : "Create user failed",
+    "User account is inactive" : "User account is inactive",
+    "User account not found" : "User account not found",
+    "Wrong credentials" : "Wrong credentials",
+    "Create role failed" : "Create role failed",
+    "Role not found" : "Role not found",
+    "Access Token" : "Access Token",
+    "Email" : "Email",
+    "Password" : "Password",
+    "Role Name" : "Role Name",
+    "Role Description" : "Role Description",
+    "User Name" : "User Name",
+    "User Email" : "User Email"
+}
