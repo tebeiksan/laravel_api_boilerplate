@@ -29,6 +29,9 @@ Route::middleware('auth:api')->group(function () {
     Route::post("/logout", [AuthController::class, "logout"]);
 
     Route::apiResource("user", UserController::class)->except(["destroy"]);
+
+    Route::post("role/sync/permission", [RoleController::class, "syncPermissions"]);
     Route::apiResource("role", RoleController::class);
+
     Route::apiResource("permission", PermissionController::class);
 });

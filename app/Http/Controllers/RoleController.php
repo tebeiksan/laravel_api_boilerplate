@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exceptions\RoleCreateFailedException;
 use App\Exceptions\RoleNotFoundException;
 use App\Http\Requests\RoleCreateRequest;
+use App\Http\Requests\RoleSyncPermissionRequest;
 use App\Http\Requests\RoleUpdateRequest;
 use App\Http\Resources\BaseResource;
 use App\Http\Resources\RoleCollection;
@@ -84,7 +85,7 @@ class RoleController extends Controller
     {
         try {
 
-            $role = Role::where("id", $request->role)->first();
+            $role = Role::with("permissions")->where("id", $request->role)->first();
 
             if (!$role) {
                 throw new RoleNotFoundException();
@@ -142,6 +143,27 @@ class RoleController extends Controller
             DB::commit();
 
             return new BaseResource([], "Delete role success");
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            throw $th;
+        } finally {
+            DB::rollBack();
+        }
+    }
+
+    public function syncPermissions(RoleSyncPermissionRequest $request)
+    {
+        DB::beginTransaction();
+        try {
+            $role = Role::findByName($request->role_name);
+
+            $role->syncPermissions($request->permissions);
+
+            $role->load('permissions');
+
+            DB::commit();
+
+            return new RoleResource($role, "Syncronize permissions success");
         } catch (\Throwable $th) {
             DB::rollBack();
             throw $th;
