@@ -90,6 +90,94 @@ class DatabaseSeeder extends Seeder
             "updated_by" => 1,
         ]);
 
+        \App\Models\Permission::create([
+            "name" => "ROLE_VIEW_ANY",
+            "description" => "Ability to view list role",
+            "guard_name" => "api",
+            "created_at" => Carbon::now(),
+            "updated_by" => 1,
+        ]);
+
+        \App\Models\Permission::create([
+            "name" => "ROLE_VIEW",
+            "description" => "Ability to view detail role",
+            "guard_name" => "api",
+            "created_at" => Carbon::now(),
+            "updated_by" => 1,
+        ]);
+
+        \App\Models\Permission::create([
+            "name" => "ROLE_CREATE",
+            "description" => "Ability to create new role",
+            "guard_name" => "api",
+            "created_at" => Carbon::now(),
+            "updated_by" => 1,
+        ]);
+
+        \App\Models\Permission::create([
+            "name" => "ROLE_UPDATE",
+            "description" => "Ability to update existing role",
+            "guard_name" => "api",
+            "created_at" => Carbon::now(),
+            "updated_by" => 1,
+        ]);
+
+        \App\Models\Permission::create([
+            "name" => "ROLE_DELETE",
+            "description" => "Ability to delete role",
+            "guard_name" => "api",
+            "created_at" => Carbon::now(),
+            "updated_by" => 1,
+        ]);
+
+        \App\Models\Permission::create([
+            "name" => "ROLE_SYNC_PERMISSION",
+            "description" => "Ability to syncronize permission of role",
+            "guard_name" => "api",
+            "created_at" => Carbon::now(),
+            "updated_by" => 1,
+        ]);
+
+        \App\Models\Permission::create([
+            "name" => "PERMISSION_VIEW_ANY",
+            "description" => "Ability to view list permission",
+            "guard_name" => "api",
+            "created_at" => Carbon::now(),
+            "updated_by" => 1,
+        ]);
+
+        \App\Models\Permission::create([
+            "name" => "PERMISSION_VIEW",
+            "description" => "Ability to view detail permission",
+            "guard_name" => "api",
+            "created_at" => Carbon::now(),
+            "updated_by" => 1,
+        ]);
+
+        \App\Models\Permission::create([
+            "name" => "PERMISSION_CREATE",
+            "description" => "Ability to create new permission",
+            "guard_name" => "api",
+            "created_at" => Carbon::now(),
+            "updated_by" => 1,
+        ]);
+
+        \App\Models\Permission::create([
+            "name" => "PERMISSION_UPDATE",
+            "description" => "Ability to update existing permission",
+            "guard_name" => "api",
+            "created_at" => Carbon::now(),
+            "updated_by" => 1,
+        ]);
+
+
+        \App\Models\Permission::create([
+            "name" => "PERMISSION_DELETE",
+            "description" => "Ability to delete permission",
+            "guard_name" => "api",
+            "created_at" => Carbon::now(),
+            "updated_by" => 1,
+        ]);
 
         $admin->syncRoles(["ADMINISTRATOR"]);
         $user->syncRoles(["USER"]);
