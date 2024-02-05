@@ -30,6 +30,8 @@ class PermissionController extends Controller
     {
         try {
 
+            $this->authorize("viewAny", Permission::class);
+
             $permissions = Permission::when($request->filled("search"), function ($query) use ($request) {
                 $query->where("name", "like", "%$request->search%")
                     ->orWhere("description", "like", "%$request->search%");
@@ -50,6 +52,8 @@ class PermissionController extends Controller
     {
         DB::beginTransaction();
         try {
+
+            $this->authorize("create", Permission::class);
 
             $user = Auth::user();
 
@@ -90,6 +94,8 @@ class PermissionController extends Controller
                 throw new PermissionNotFoundException();
             }
 
+            $this->authorize("view", Permission::class);
+
             return new PermissionResource($permission);
         } catch (\Throwable $th) {
             throw $th;
@@ -110,6 +116,8 @@ class PermissionController extends Controller
             if (!$permission) {
                 throw new PermissionNotFoundException();
             }
+
+            $this->authorize("update", $permission);
 
             $permission->description = $request->description;
             $permission->updated_by = $user->id;
@@ -136,6 +144,8 @@ class PermissionController extends Controller
             if (!$permission) {
                 throw new PermissionNotFoundException();
             }
+
+            $this->authorize("delete", $permission);
 
             $permission->delete();
 
