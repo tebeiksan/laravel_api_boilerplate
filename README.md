@@ -30,6 +30,8 @@ API Endpoint in this boilerplate :
         <li>GET: /user/{user} (Get user by ID)</li>
         <li>PUT: /user/{user} (Update user by ID)</li>
         <li>POST: /user (Create user)</li>
+        <li>POST: /user/sync/role (Syncronize roles to user)</li>
+        <li>POST: /user/sync/permission (Syncronize direct permissions to user)</li>
       </ul>
     </li>
     <li>
@@ -40,6 +42,7 @@ API Endpoint in this boilerplate :
         <li>PUT: /role/{role} (Update role by ID)</li>
         <li>POST: /role (Create role)</li>
         <li>DELETE: /role/{role} (Delete role by ID)</li>
+        <li>POST: /role/sync/permission (Syncronize permissions to role)</li>
       </ul>
     </li>
     <li>
