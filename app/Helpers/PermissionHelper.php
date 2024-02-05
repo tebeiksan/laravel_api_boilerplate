@@ -2,7 +2,7 @@
 
 namespace App\Helpers;
 
-class RoleHelper
+class PermissionHelper
 {
     const USER_CREATE = "USER_CREATE";
     const USER_UPDATE = "USER_UPDATE";
