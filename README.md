@@ -91,15 +91,19 @@ The Laravel framework has a few system requirements. You should ensure that your
     ```sh
     composer install
     ```
-3. Generate APP_KEY
+3. Create `.env` file
+    ```sh
+    cp .env.example .env
+    ```
+4. Generate APP_KEY
     ```sh
     php artisan key:generate
     ```
-4. Generate JWT KEY
+5. Generate JWT KEY
     ```sh
     php artisan jwt:secret
     ```
-5. Setup your DB configuration in `.env` file
+6. Setup your DB configuration in `.env` file
     ```
     DB_CONNECTION=mysql
     DB_HOST=127.0.0.1
@@ -108,9 +112,13 @@ The Laravel framework has a few system requirements. You should ensure that your
     DB_USERNAME=root
     DB_PASSWORD=
     ```
-6. Migrate DB and Seed
+7. Migrate DB and Seed
     ```sh
     php artisan migrate:fresh --seed
+    ```
+8. Run server
+    ```sh
+    php artisan serve
     ```
 
 <!-- CONTRIBUTING -->
