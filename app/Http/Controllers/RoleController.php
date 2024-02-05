@@ -106,7 +106,7 @@ class RoleController extends Controller
         try {
             $user = Auth::user();
 
-            $role = Role::where("id", $request->role)->first();
+            $role = Role::with("permissions")->where("id", $request->role)->first();
 
             if (!$role) {
                 throw new RoleNotFoundException();

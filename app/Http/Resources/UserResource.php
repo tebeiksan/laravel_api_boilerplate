@@ -20,6 +20,8 @@ class UserResource extends BaseResource
             "name" => $this->name,
             "is_active" => $this->is_active,
             "is_active_desc" => __(UserHelper::ACTIVE_DESCRIPTION[$this->is_active]),
+            "roles" => new RoleCollection($this->whenLoaded("masterRole")),
+            "permissions" => new PermissionCollection($this->whenLoaded("masterPermission"))
         ];
     }
 }

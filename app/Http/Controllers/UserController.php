@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Exceptions\UserCreateFailedException;
 use App\Exceptions\UserNotFoundException;
 use App\Http\Requests\UserCreateRequest;
+use App\Http\Requests\UserSyncPermissionRequest;
+use App\Http\Requests\UserSyncRoleRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Http\Resources\UserCollection;
 use App\Http\Resources\UserResource;
@@ -82,7 +84,10 @@ class UserController extends Controller
     {
         try {
 
-            $user = User::where("id", $request->user)->first();
+            $user = User::with([
+                'masterRole',
+                'masterPermission',
+            ])->where("id", $request->user)->first();
 
             if (!$user) {
                 throw new UserNotFoundException();
@@ -102,7 +107,10 @@ class UserController extends Controller
         DB::beginTransaction();
         try {
 
-            $user = User::where("id", $request->user)->first();
+            $user = User::with([
+                'masterRole',
+                'masterPermission',
+            ])->where("id", $request->user)->first();
 
             if (!$user) {
                 throw new UserNotFoundException();
@@ -133,5 +141,70 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
+    }
+
+    public function syncRoles(UserSyncRoleRequest $request)
+    {
+        DB::beginTransaction();
+        try {
+
+            $user = User::with([
+                'masterRole',
+                'masterPermission',
+            ])->where("id", $request->user_id)->first();
+
+            if (!$user) {
+                throw new UserNotFoundException();
+            }
+
+            $user->syncRoles($request->roles);
+
+            DB::commit();
+
+            $user->refresh();
+
+            return new UserResource($user, "Syncronize user roles success");
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            throw $th;
+        }
+        DB::rollBack();
+    }
+
+    /**
+     * Add direct permission to users
+     * So if role has permission and assigned to user and user has direct permission also,
+     * all permissions from role and direct permissions will combined
+     */
+    public function syncPermissions(UserSyncPermissionRequest $request)
+    {
+        DB::beginTransaction();
+        try {
+
+            $this->authorize("syncPermission", User::class);
+
+            $user = User::with([
+                'masterRole',
+                'masterPermission',
+            ])->where("id", $request->user_id)->first();
+
+            if (!$user) {
+                throw new UserNotFoundException();
+            }
+
+            $user->syncPermissions($request->permissions);
+
+            DB::commit();
+
+            $user->refresh();
+
+            return new UserResource($user, "Syncronize user permissions success");
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            throw $th;
+        }
+        DB::rollBack();
     }
 }
