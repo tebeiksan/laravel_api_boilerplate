@@ -28,6 +28,8 @@ Route::middleware('auth:api')->group(function () {
     Route::get("/profile", [AuthController::class, "profile"]);
     Route::post("/logout", [AuthController::class, "logout"]);
 
+    Route::post("user/sync/role", [UserController::class, "syncRoles"]);
+    Route::post("user/sync/permission", [UserController::class, "syncPermissions"]);
     Route::apiResource("user", UserController::class)->except(["destroy"]);
 
     Route::post("role/sync/permission", [RoleController::class, "syncPermissions"]);
