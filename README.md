@@ -124,6 +124,18 @@ The Laravel framework has a few system requirements. You should ensure that your
     php artisan serve
     ```
 
+9. Try login with basic login
+
+    ```
+    Full Access Ability
+    email : admin@example.com
+    password : password
+
+    Minimum Access Ability
+    email : user@example.com
+    password : password
+    ```
+
 <!-- CONTRIBUTING -->
 
 ## Contributing

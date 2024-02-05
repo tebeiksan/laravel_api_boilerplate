@@ -11,7 +11,6 @@ use App\Http\Requests\UserUpdateRequest;
 use App\Http\Resources\UserCollection;
 use App\Http\Resources\UserResource;
 use App\Models\User;
-use Google\Service\Analytics\UserRef;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -30,6 +29,9 @@ class UserController extends Controller
     public function index(Request $request)
     {
         try {
+
+            $this->authorize("viewAny", User::class);
+
             $users = User::when($request->filled("search"), function ($query) use ($request) {
                 $query->where("name", "like", "%$request->search%")
                     ->orWhere("email", "like", "%$request->search%");
@@ -50,6 +52,8 @@ class UserController extends Controller
     {
         DB::beginTransaction();
         try {
+
+            $this->authorize("create", User::class);
 
             $authUser = Auth::user();
 
@@ -93,6 +97,8 @@ class UserController extends Controller
                 throw new UserNotFoundException();
             }
 
+            $this->authorize("view", $user);
+
             return new UserResource($user);
         } catch (\Throwable $th) {
             throw $th;
@@ -115,6 +121,8 @@ class UserController extends Controller
             if (!$user) {
                 throw new UserNotFoundException();
             }
+
+            $this->authorize("update", $user);
 
             $authUser = Auth::user();
 
@@ -147,6 +155,8 @@ class UserController extends Controller
     {
         DB::beginTransaction();
         try {
+
+            $this->authorize("syncRole", User::class);
 
             $user = User::with([
                 'masterRole',

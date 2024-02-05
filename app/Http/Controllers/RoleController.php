@@ -31,6 +31,8 @@ class RoleController extends Controller
     {
         try {
 
+            $this->authorize("viewAny", Role::class);
+
             $roles = Role::when($request->filled("search"), function ($query) use ($request) {
                 $query->where("name", "like", "%$request->search%")
                     ->orWhere("description", "like", "%$request->search%");
@@ -51,6 +53,8 @@ class RoleController extends Controller
     {
         DB::beginTransaction();
         try {
+
+            $this->authorize("create", Role::class);
 
             $user = Auth::user();
 
@@ -91,6 +95,8 @@ class RoleController extends Controller
                 throw new RoleNotFoundException();
             }
 
+            $this->authorize("view", $role);
+
             return new RoleResource($role);
         } catch (\Throwable $th) {
             throw $th;
@@ -111,6 +117,8 @@ class RoleController extends Controller
             if (!$role) {
                 throw new RoleNotFoundException();
             }
+
+            $this->authorize("update", $role);
 
             $role->description = $request->description;
             $role->updated_by = $user->id;
@@ -138,6 +146,8 @@ class RoleController extends Controller
                 throw new RoleNotFoundException();
             }
 
+            $this->authorize("delete", $role);
+
             $role->delete();
 
             DB::commit();
@@ -155,6 +165,9 @@ class RoleController extends Controller
     {
         DB::beginTransaction();
         try {
+
+            $this->authorize("syncPermission", Role::class);
+
             $role = Role::findByName($request->role_name);
 
             $role->syncPermissions($request->permissions);
