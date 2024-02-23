@@ -106,7 +106,7 @@ The Laravel framework has a few system requirements. You should ensure that your
     ```sh
     php artisan jwt:secret
     ```
-6. Setup your DB configuration in `.env` file
+6. Create your database and set configuration in `.env` file
     ```
     DB_CONNECTION=mysql
     DB_HOST=127.0.0.1
@@ -115,7 +115,7 @@ The Laravel framework has a few system requirements. You should ensure that your
     DB_USERNAME=root
     DB_PASSWORD=
     ```
-7. Migrate DB and Seed
+7. Migrate database and Seed
     ```sh
     php artisan migrate:fresh --seed
     ```
@@ -123,8 +123,12 @@ The Laravel framework has a few system requirements. You should ensure that your
     ```sh
     php artisan serve
     ```
-
-9. Try login with basic login
+9. Import postman collection and create environment with the following variable
+    ```
+    API_URL (ex: http://localhost:8000/api)
+    API_TOKEN (Automaticly generated when you successfully log in)
+    ```
+10. Try login with basic login
 
     ```
     Full Access Ability
