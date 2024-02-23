@@ -125,8 +125,8 @@ The Laravel framework has a few system requirements. You should ensure that your
     ```
 9. Import postman collection and create environment with the following variable
     ```
-    API_URL (ex: http://localhost:8000/api)
-    API_TOKEN (Automaticly generated when you successfully log in)
+    API_URL (ex value: http://localhost:8000/api)
+    API_TOKEN (value will automaticly generated when you successfully log in)
     ```
 10. Try login with basic login
 
