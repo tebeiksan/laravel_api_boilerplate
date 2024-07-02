@@ -20,7 +20,8 @@
 									"pm.environment.set('API_TOKEN', res.data.token);\r",
 									"pm.collectionVariables.set(\"API_TOKEN\", res.data.token);"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -29,7 +30,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\" : \"user@example.com\",\r\n    \"password\" : \"password\"\r\n}",
+							"raw": "{\r\n    \"email\" : \"admin@example.com\",\r\n    \"password\" : \"password\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -561,6 +562,50 @@
 									"path": [
 										"permission",
 										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "UTILITY",
+			"item": [
+				{
+					"name": "Maintenance",
+					"item": [
+						{
+							"name": "Maintenance Get Status",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/maintenance",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"maintenance"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Maintenance Toggle Status",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/maintenance",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"maintenance"
 									]
 								}
 							},

@@ -94,8 +94,11 @@ class Handler extends ExceptionHandler
                 }
 
                 if ($exception instanceof QueryException) {
-                    $message = explode(":", $message);
-                    $message = "Query error code {$message[0]}, please contact your system administrator";
+
+                    if (env("APP_ENV") == "production") {
+                        $message = explode(":", $message);
+                        $message = "Error {$message[0]}, please contact your system administrator";
+                    }
 
                     return response()->json([
                         'data' => [

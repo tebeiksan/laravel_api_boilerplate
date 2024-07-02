@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UtilityController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +26,9 @@ Route::post("/login", [AuthController::class, "login"]);
 Route::post("/login/google", [AuthController::class, "loginGoogle"]);
 
 Route::middleware('auth:api')->group(function () {
+    Route::get('maintenance', [UtilityController::class, 'maintenanceShow']);
+    Route::post('maintenance', [UtilityController::class, 'maintenanceToggle']);
+
     Route::get("/profile", [AuthController::class, "profile"]);
     Route::post("/logout", [AuthController::class, "logout"]);
 
