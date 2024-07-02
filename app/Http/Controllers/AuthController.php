@@ -63,7 +63,7 @@ class AuthController extends Controller
                     throw new UserNotFoundException();
                 }
 
-                if ($user->status == UserHelper::USER_INACTIVE) {
+                if ($user->is_active == UserHelper::USER_INACTIVE) {
                     throw new UserInactiveException();
                 }
 
